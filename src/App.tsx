@@ -1,4 +1,4 @@
-import logo from './assets/creative-memory-logo.png'
+import logo from './assets/creativeMemoryLogo.png'
 import './App.css'
 import { FaFacebook, FaGlobe, FaInstagram } from 'react-icons/fa'
 function App() {
