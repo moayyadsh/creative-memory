@@ -8,18 +8,18 @@
 
 body {
   font-family: 'Greta Arabic', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  min-height: 100vh;
-  background: linear-gradient(rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.95)),
+  background: linear-gradient(rgba(255, 255, 255, 0.96), rgba(255, 255, 255, 0.96)),
     repeating-linear-gradient(0deg, transparent, transparent 60px, rgba(200, 200, 200, 0.1) 60px, rgba(200, 200, 200, 0.1) 120px),
     repeating-linear-gradient(90deg, transparent, transparent 60px, rgba(200, 200, 200, 0.1) 60px, rgba(200, 200, 200, 0.1) 120px);
+  min-height: 100vh;
   position: relative;
+  overflow: hidden;
 }
 
-
+/* ===== CONTAINER ===== */
 .container {
   min-height: 100vh;
   display: flex;
@@ -28,10 +28,24 @@ body {
   padding: 20px;
   position: relative;
   z-index: 1;
-
-  padding-bottom: 150px;
+  padding-bottom: 130px;
 }
 
+/* Background geometric pattern */
+.container::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('./assets/creative-memory-backgrund.png') no-repeat center bottom;
+  background-size: 180%;
+  opacity: 0.9;
+  z-index: 0;
+}
+
+/* ===== CONTENT ===== */
 .content {
   display: flex;
   flex-direction: column;
@@ -39,14 +53,17 @@ body {
   gap: 60px;
   max-width: 400px;
   width: 100%;
+  position: relative;
+  z-index: 1;
 }
 
+/* ===== LOGO ===== */
 .logo {
-  width: 250px;
+  width: 220px;
   height: auto;
-  margin-bottom: 20px;
 }
 
+/* ===== BUTTONS ===== */
 .buttons {
   display: flex;
   flex-direction: column;
@@ -61,13 +78,14 @@ body {
   gap: 10px;
   padding: 15px 30px;
   background-color: #bd212d;
-  color: white;
+  color: #fff;
   text-decoration: none;
   border-radius: 8px;
   font-size: 18px;
   font-weight: 500;
   transition: all 0.3s ease;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  position: relative;
 }
 
 .btn:hover {
@@ -80,40 +98,35 @@ body {
   transform: translateY(0);
 }
 
-.btn .icon {
-  font-size: 20px;
+.icon {
+  font-size: 24px;
+  width: 24px;
+  flex-shrink: 0;
 }
 
-
-
-.container {
-  position: absolute;
-  bottom: -100px;
-  background-image: 
-    linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)),
-    url(./assets/creative-memory-backgrund.png);
-  background-size: 200%;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-attachment: scroll;
-  width: 100vw;
-  height: 100vh;
+.btn-text {
+  min-width: 90px;
+  text-align: left;
 }
 
-/* Mobile optimization */
+/* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
-  .container {
+  .container::after {
     background-size: contain;
-    background-position: center bottom;
-    background-attachment: scroll;
-  }
-}/* For very small screens */
-@media (max-width: 480px) {
-  .container {
-    background-size: contain ;
-  background-size: 130%;
-
-    background-position: center bottom;
   }
 }
 
+@media (max-width: 480px) {
+  .logo {
+    width: 280px;
+  }
+
+  .btn {
+    font-size: 16px;
+    padding: 12px 25px;
+  }
+
+  .container::after {
+    background-size: 130%;
+  }
+}
